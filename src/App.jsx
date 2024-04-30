@@ -19,10 +19,19 @@ function App() {
     })
   }
 
+  function handleAddProject(newProject) {
+    setShowNewProject(prevState => {
+      return {
+       ...prevState,
+        projects: [...prevState.projects, newProject],
+      }
+    })
+  }
+
   let content;
 
   if (showNewProject.selectedProjectId === null) {
-    content = < NewProject />;
+    content = < NewProject onAdd={handleAddProject} />;
   } else if (showNewProject.selectedProjectId === undefined) { 
     content = < UnselectedProject onStartAddProject={handleStartProject} />;
   }
